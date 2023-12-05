@@ -17,10 +17,10 @@ cur_state = {
     "aS": 0,
     "hS": 0,
     "in": 1,
-    "iH": "bottom",
+    "iH": "t",
     "outs": 0,
     "count": [0, 0],
-    "bases": "000",
+    "bases": "100",
     "last-play": "",
 }
 
@@ -45,8 +45,14 @@ def set_bases(bases):
     res = []
     for i in range(len(bases) - 1):
         res.append(f"{i + 1 if bases[i] else 0}")
-    print(res)
     return "".join(res)
+
+
+def set_inning_half(inning_half):
+    if inning_half == "top":
+        return "t"
+    else:
+        return "b"
 
 
 def load_score():
@@ -58,7 +64,7 @@ def load_score():
     cur_state["aS"] = data["away-score"]
     cur_state["hS"] = data["home-score"]
     cur_state["in"] = data["inning"]
-    cur_state["iH"] = data["inning-half"]
+    cur_state["iH"] = set_inning_half(data["inning-half"])
     cur_state["outs"] = data["outs"]
     cur_state["cnt"] = data["count"]
     cur_state["bases"] = set_bases(data["on_base"])
