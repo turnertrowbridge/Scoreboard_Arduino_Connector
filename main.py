@@ -1,13 +1,11 @@
-import curses
 import json
-import threading
 import time
+import config
 
 import requests
-from time import sleep
 from arduino_connector import Uno
 
-api_url = "https://w1fyv4m4j3.execute-api.us-west-2.amazonaws.com/prod/"
+api_url = config.api_key
 
 cur_state = {
     "aT": "Dodgers",
@@ -73,7 +71,7 @@ def load_score():
 
 # Define the Arduino-related operations in a separate function
 def arduino_operations():
-    arduino = Uno('/dev/cu.usbmodem11401', 9600)
+    arduino = Uno('/dev/cu.usbmodem211401', 9600)
     time.sleep(2)
 
     while True:
